@@ -8,6 +8,10 @@ public class player : MonoBehaviour
     float speed;
     float Lasttime;
     Rigidbody2D rb;
+    public GameObject BlueSprite;
+    public GameObject RedSprite;
+    Vector2 FirstPosition;
+    Vector2 MovableArea;
     enum Team
     {
         Red,Blue
@@ -18,13 +22,21 @@ public class player : MonoBehaviour
     {
         speed = Random.Range(1.0f,1.5f);
         rb = this.gameObject.GetComponent<Rigidbody2D>();
-        if (Random.Range(1, 2) == 1) SetTeam(1);
+        if (Random.Range(1, 3) == 1) SetTeam(1);
         else SetTeam(2);
     }
     void SetTeam(int Teams)
-    { 
-        if (Teams == 1) myTeam = Team.Red;
-        if (Teams == 2) myTeam = Team.Blue;
+    {
+        if (Teams == 1) 
+        {
+            myTeam = Team.Red;
+            BlueSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (Teams == 2) 
+        {
+            myTeam = Team.Blue;
+            RedSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     // Update is called once per frame
